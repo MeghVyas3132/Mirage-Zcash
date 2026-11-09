@@ -25,7 +25,6 @@
   - **Industry:** Arkham reported labeling over half of ZEC transactions without breaking any cryptography, using transparent-side and behavioral data ([crypto.news](https://crypto.news/zcash-privacy-tested-as-arkham-tracks-53percent-of-zec/)).
   - **Real incident:** a wallet route sent swap refunds back to the user's original transparent address, making the link obvious ([report](https://www.cryptopolitan.com/zachxbt-flags-privacy-flaw-in-zashi-wallets-near-intents-integration/)).
   - **The gap we fill:** linkability checkers exist ([zcrowd](https://github.com/Kylne700/zcrowd), [am-i-linkable](https://github.com/Adeolu05/am-i-linkable), [CipherScan](https://forum.zcashcommunity.com/t/cipherscan-2026-privacy-intelligence-for-zcash/54151)), but you run them separately, before you send. zcrowd's own README lists the wallet hook as roadmap. Mirage is that piece: the check lives **inside the send**, and acts on the result.
-  - **Conversations at the venue:** _to be added: only real conversations, quoted with permission._
 
 ## 2. What it does
 
@@ -122,7 +121,7 @@ Settings live in [`.env.example`](.env.example). `EXIT_DELAY_SCALE=0.01` turns t
 
 - **Next milestone:** a mainnet index plus `mirage-core` published on npm, and a pre-send hook PR to a Zcash wallet.
 - **Who benefits:** wallets without a linkability check, and their users.
-- **Already started:** _links to the upstream issue and forum post go here._
+- **Already started:** a Zcash coinholder retroactive grant application for the completed hackathon build (Nov 2026); a wallet-hook proposal to an upstream Zcash wallet is next.
 
 ## 8. Links
 
