@@ -53,7 +53,9 @@ Given a viewing key (read-only), list past exits that were easy to link.
 The scoring and planning logic ships as a small library (`mirage-core`) that other Zcash wallets can call before any deshield or swap.
 
 ## What Mirage does *not* do
-- **Funds:** it never holds user funds or keys. It reads public chain data and schedules the user's own transactions.
+- **Keys:** Mirage itself holds no keys. The spending keys live in the wallet engine it drives (zkool_graphql), which signs each scheduled piece automatically when it is due, so whoever runs that engine has custody:
+  - **Self-hosted** (the intended setup): the engine runs on your machine, so you keep custody. The machine has to stay online for scheduled pieces to go out.
+  - **Our hosted testnet demo:** we, the operators, hold the two demo wallets. Fine for TAZ, never for real funds.
 - **Pooling:** it doesn't mix funds with other users and doesn't run a coordinator.
 - **Guarantees:** it doesn't promise anonymity. It reports a heuristic estimate and reduces linkability.
 - **Network:** testnet only for this build.

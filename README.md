@@ -33,7 +33,7 @@
 3. **Transparent destination** (`tm…`, e.g. an exchange deposit): Mirage scores the exit against an index of every public shield and deshield on the chain.
    - 🟢 A big crowd of similar crossings: sent.
    - 🟡 / 🔴 Few or none: **held**, and Mirage proposes a guarded exit.
-4. **Guarded exit:** one **fully shielded self-send** splits the amount into common denominations inside the pool. Each piece is then scheduled to leave separately. Right before each piece goes, the check runs again, and a piece that still stands out is held and re-checked later. Value that doesn't fit a common denomination stays shielded.
+4. **Guarded exit:** one **fully shielded self-send** splits the amount into common denominations inside the pool. Each piece is then scheduled to leave separately. Right before each piece goes, the check runs again, and a piece that still stands out is held and re-checked later: up to 6 times, 2 hours apart, after which it is sent anyway so funds are never stuck. Value that doesn't fit a common denomination stays shielded.
 
 ## 3. Try it in 5 minutes
 
@@ -88,7 +88,7 @@ Settings live in [`.env.example`](.env.example). `EXIT_DELAY_SCALE=0.01` turns t
    - **Our server:** stores the public index, exit schedules (amounts, destination, txids) and the demo wallets. No emails, names or IPs are stored by Mirage.
 3. **Who do users have to trust?**
    - **The light-wallet server:** for chain data.
-   - **Whoever runs the wallet engine:** run locally, that's you. **On the hosted demo, the two testnet wallets are held by us, the operators.** That's fine for TAZ; for real funds, run Mirage locally.
+   - **Whoever runs the wallet engine:** Mirage itself holds no keys, but the wallet engine it drives (zkool_graphql) holds the spending keys and signs each scheduled piece automatically. Run locally, that's you, and your machine has to stay online for scheduled pieces. **On the hosted demo, the two testnet wallets are held by us, the operators.** That's fine for TAZ; for real funds, run Mirage locally.
 4. **What would you fix next?**
    - **Network privacy:** route sync and broadcast over Nym.
    - **No server needed:** build the index in the browser too, so even the index download doesn't touch our server.
@@ -121,7 +121,7 @@ Settings live in [`.env.example`](.env.example). `EXIT_DELAY_SCALE=0.01` turns t
 
 - **Next milestone:** a mainnet index plus `mirage-core` published on npm, and a pre-send hook PR to a Zcash wallet.
 - **Who benefits:** wallets without a linkability check, and their users.
-- **Already started:** a Zcash coinholder retroactive grant application for the completed hackathon build (Nov 2026); a wallet-hook proposal to an upstream Zcash wallet is next.
+- **Already started:** a [Zcash coinholder retroactive grant application](https://github.com/Financial-Privacy-Foundation/ZcashCoinholderGrantsProgram/issues/100) for the completed hackathon build, and a [review request to the zkool maintainer](https://github.com/hhanh00/zkool2/issues/1638) about a pre-deshield hook (Nov 2026).
 
 ## 8. Links
 

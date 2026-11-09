@@ -16,10 +16,14 @@ Update this as the build changes. It gets copied into the submission.
 
 3. **Who users must trust**
    - **Us:** to serve an honest index. The index is rebuildable from public chain data by anyone.
-   - **The local wallet engine (zkool):** keys stay on the user's machine; it runs on localhost only.
+   - **The wallet engine (zkool_graphql):** it holds the spending keys and signs each scheduled exit piece automatically when it is due, so the user doesn't sign piece by piece. Whoever runs it has custody:
+     - **Self-hosted:** it runs on the user's machine (localhost only), so keys stay with the user. The machine has to stay online for scheduled pieces to go out.
+     - **Our hosted testnet demo:** we, the operators, hold the two demo wallets (TAZ only).
+   - **The hold limit:** a piece that still scores red is held and re-checked up to 6 times, 2 hours apart, and then sent anyway so funds are never stuck (`MAX_HOLDS` in `server/src/jobs.ts`; the hosted demo scales the 2 hours down to minutes with `EXIT_DELAY_SCALE`). There is no button yet to cancel a scheduled exit; that's on the list.
    - **Nym:** for network privacy where used.
 
 4. **What we'd fix next**
    - **Broadcast:** Nym for every broadcast path.
    - **Index:** a client-side indexer option (no index server at all).
    - **Model:** publish and peer-review the crowd-score model.
+   - **Control:** let the user cancel a scheduled exit, and choose whether a still-red piece is sent or kept shielded.
